@@ -1,0 +1,17 @@
+'''
+
+
+
+
+def isWordGuessed(secretWord, letterGuessed):
+    '''
+    secretWord: string, the word the user is guessing 
+    lettersGuessed: list, what letters have been guessed so far
+    returns: boolean, True if all the letters of secretWord are in lettersGuessed;
+        False otherwise
+    '''
+    print(letterGuessed)
+    for letter in letterGuessed:
+        if letter not in secretWord:
+            return False
+    return True
