@@ -1,6 +1,9 @@
 '''
-
-
+# Problem set 1 (A) - Is the Word Guessed
+We will start by writing 3 simple functions that will help us easily code the Hangman problem.
+First, implement the function isWordGuessed that takes in two parameters -a string, secretWord, 
+and a list of letters, letterGuessed. The function returns a boolean -True if secretWord has been 
+guessed (ie, all the letters of secretWord are in letterGuessed) and False otherwise.
 
 
 def isWordGuessed(secretWord, letterGuessed):
@@ -11,7 +14,7 @@ def isWordGuessed(secretWord, letterGuessed):
         False otherwise
     '''
     print(letterGuessed)
-    for letter in letterGuessed:
-        if letter not in secretWord:
-            return False
-    return True
+    for letter in letterGuessed:     # Pick out guessed letter one at a time
+        if letter not in secretWord: # Check if guessed letter in secretWord
+            return False             # False returned as soon as letter does not match
+    return True                      # if everything matches, exits loop and True returned
