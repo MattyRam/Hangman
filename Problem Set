@@ -1,0 +1,48 @@
+'''
+Problem set 1 - Is the Word Guessed
+We will start by writing 3 simple functions that will help us easily code the Hangman problem.
+First, implement the function isWordGuessed that takes in two parameters -a string, secretWord, 
+and a list of letters, letterGuessed. The function returns a boolean -True if secretWord has been 
+guessed (ie, all the letters of secretWord are in letterGuessed) and False otherwise.
+'''
+
+def isWordGuessed(secretWord, letterGuessed):
+    '''
+    secretWord: string, the word the user is guessing 
+    lettersGuessed: list, what letters have been guessed so far
+    returns: boolean, True if all the letters of secretWord are in lettersGuessed;
+        False otherwise
+    '''
+    print(letterGuessed)
+    for letter in letterGuessed:     # Pick out guessed letter one at a time
+        if letter not in secretWord: # Check if guessed letter in secretWord
+            return False             # False returned as soon as letter does not match
+    return True                      # if everything matches, exits loop and True returned
+
+
+'''
+Problem set 2 - Printing Out the User's Guess
+Next, implement the function getGuessWord that takes in two parameters - a string, secretWord, and 
+a list of letters, lettersGuessed. This function returns a string that is comprised of letters and 
+underscores, based in what letters in lettersGuessed are in secretWord. This shouldn't be too different
+from isWordGuessed !
+'''
+
+def isWordGuessed(secretWord, lettersGuessed):
+    '''
+    secretWord: string, the word the user is guessing
+    lettersGuessed: list, what letters have been guessed so far
+    returns: boolean, True if all the letters of secretWord are in lettersGuessed;
+     False otherwise
+    '''
+    FinalWordGuessed = []
+    GuessedWord = []
+    
+    for letter in secretWord:                      # List out each letters in secretWord
+        if letter in lettersGuessed:               # Compare them to letters in lettersGuessed
+            GuessedWord.append(letter + ' ')       # Append letters to GuessedWord if there's a match
+        else:
+            GuessedWord.append('_' + ' ')          # If no match, append a underscore in place of letter
+    FinalWordGuessed = ''.join(GuessedWord)
+    
+    return FinalWordGuessed                        # Print out GuessedWord
