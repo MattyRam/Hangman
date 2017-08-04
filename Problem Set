@@ -76,6 +76,29 @@ def getAvailableLetters(lettersGuessed):
 Problem Set 4 - Hangman
 '''
 
+'''
+Added additional function, def CorrectGuesses(secretWord, lettersGuessed)
+that captures only the correctly guessed words
+'''
+
+def CorrectGuesses(secretWord, lettersGuessed):
+    '''
+    secretWord: string, the secret word to guess.
+    lettersGuessed: every letter guessed
+    return: string, comprised of correct guesses from the lettersGuessed
+    '''
+    CorrectLetters = ''
+    
+    for letters in secretWord:
+        if letters in lettersGuessed:
+            CorrectLetters += letters
+    if CorrectLetters == secretWord:
+        return True
+    else: 
+        return False
+
+
+
 def hangman(secretWord):
     '''
     secretWord: string, the secret word to guess.
@@ -96,26 +119,29 @@ def hangman(secretWord):
 
     Follows the other limitations detailed in the problem write-up.
     '''
-    print("Welcome to the game, Hangman!")
+     print("Welcome to the game, Hangman!")
     print("I am thinking of a word that is ", len(secretWord), "letters long.")
     print("--------------------")
     
     NumberGuesses = 8
+    lettersGuessed = ''
     
-    while not isWordGuessed(secretWord, lettersGuessed) and NumberGuesses > 0:
+    while not CorrectGuesses(secretWord, lettersGuessed) and NumberGuesses > 0:
   
         print("You have ", NumberGuesses, " guesses left.")
         print("Available letters: ", getAvailableLetters(lettersGuessed))
         
-        Guess_letter = str(input("Please guess a letter: "))
+        Guess_letter = str(input("Please guess a letter: ").lower())
         
-        lettersGuessed += Guess_letter
-        
-        if isWordGuessed(secretWord, lettersGuessed):
-            print("Good guess: ", getGuessedWord(secretWord, lettersGuessed))
+        if Guess_letter not in lettersGuessed:
+            lettersGuessed += Guess_letter
             NumberGuesses -= 1
-        elif Guess_letter in lettersGuessed:
-            print("Oops! You've already guessed that letter: ", getGuessedWord(secretWord, lettersGuessed))
+            if Guess_letter in secretWord:
+                print("Good guess: ", getGuessedWord(secretWord, lettersGuessed))
+            else:
+                print("Oops! That letter is not in my word: ", getGuessedWord(secretWord, lettersGuessed), "\nPlease try again!!")
         else:
-            print("Oops! That letter is not in my word: ", getGuessedWord(secretWord, lettersGuessed))
-            NumberGuesses -= 1
+            print("Oops! You've already guessed that letter: ", getGuessedWord(secretWord, lettersGuessed))
+        
+    print("----------------------")
+    print("CONGRATULATIONS!!! YOU WON!!!")     
