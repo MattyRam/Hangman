@@ -45,7 +45,7 @@ def getGuessedWord(secretWord, lettersGuessed):
             GuessedWord.append('_' + ' ')          # If no match, append a underscore in place of letter
     FinalWordGuessed = ''.join(GuessedWord)
     
-    return FinalWordGuessed                        # Print out GuessedWord
+    return FinalWordGuessed                        # This function prints out GuessedWord
 
 
 '''
